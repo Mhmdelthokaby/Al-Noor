@@ -51,7 +51,7 @@ export function HeroSection() {
           >
             <div className="relative rounded-3xl overflow-hidden shadow-elevated">
               <img
-                src="https://images.unsplash.com/photo-1609599002809-1e8899d78628?w=600&h=400&fit=crop"
+                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600&h=400&auto=format&fit=crop"
                 alt="Quran learning"
                 className="w-full h-[400px] object-cover"
               />
