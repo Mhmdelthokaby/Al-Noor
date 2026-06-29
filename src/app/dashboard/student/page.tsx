@@ -7,7 +7,10 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { studentDashboardData } from "@/lib/data";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { studentDashboardData, programs } from "@/lib/data";
+import { cn } from "@/lib/utils";
 
 export default function StudentDashboard() {
   const data = studentDashboardData;
@@ -151,19 +154,46 @@ export default function StudentDashboard() {
         </Card>
       </div>
 
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between">
+          <CardTitle>My Programs</CardTitle>
+          <Link href="/dashboard/student/courses">
+            <Button variant="ghost" size="sm" className="gap-1 text-xs">View All <ArrowRight className="h-3 w-3" /></Button>
+          </Link>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          {programs.map((p) => (
+            <Link key={p.id} href={`/dashboard/student/courses/${p.id}`} className="flex items-center gap-4 p-3 rounded-xl hover:bg-muted transition-colors group">
+              <div className="h-14 w-20 rounded-xl overflow-hidden shrink-0">
+                <img src={p.image} alt={p.title} className="w-full h-full object-cover" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium group-hover:text-primary transition-colors">{p.title}</p>
+                <p className="text-xs text-muted-foreground">{p.completedLessons}/{p.totalLessons} lessons</p>
+                <div className="mt-1.5 h-1.5 rounded-full bg-muted overflow-hidden">
+                  <div className="h-full rounded-full bg-gradient-to-r from-primary to-primary-light transition-all" style={{ width: `${p.progress}%` }} />
+                </div>
+              </div>
+              <span className="text-xs font-medium text-muted-foreground">{p.progress}%</span>
+            </Link>
+          ))}
+        </CardContent>
+      </Card>
+
       <div>
         <CardHeader className="px-0 pt-0">
           <CardTitle>Quick Actions</CardTitle>
         </CardHeader>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { icon: <BookOpen className="h-5 w-5" />, label: "Book Class", desc: "Schedule your next lesson" },
-            { icon: <TrendingUp className="h-5 w-5" />, label: "Upgrade Plan", desc: "Get more classes per week" },
-            { icon: <MessageSquare className="h-5 w-5" />, label: "Contact Teacher", desc: "Send a message" },
-            { icon: <CreditCard className="h-5 w-5" />, label: "View Payments", desc: "Check invoices" },
+            { icon: <BookOpen className="h-5 w-5" />, label: "Continue Learning", desc: "Go to my programs", href: "/dashboard/student/courses" },
+            { icon: <TrendingUp className="h-5 w-5" />, label: "Upgrade Plan", desc: "Get more classes per week", href: "#" },
+            { icon: <MessageSquare className="h-5 w-5" />, label: "Contact Teacher", desc: "Send a message", href: "/dashboard/student/teacher" },
+            { icon: <CreditCard className="h-5 w-5" />, label: "View Payments", desc: "Check invoices", href: "/dashboard/student/payments" },
           ].map((action) => (
-            <button
+            <Link
               key={action.label}
+              href={action.href}
               className="flex flex-col items-start gap-2 p-4 rounded-2xl border border-border bg-card shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all text-left"
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/5 text-primary">{action.icon}</div>
@@ -171,7 +201,7 @@ export default function StudentDashboard() {
                 <p className="text-sm font-medium">{action.label}</p>
                 <p className="text-xs text-muted-foreground">{action.desc}</p>
               </div>
-            </button>
+            </Link>
           ))}
         </div>
       </div>

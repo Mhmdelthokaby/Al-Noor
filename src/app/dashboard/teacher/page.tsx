@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Clock, Users, Star, Award, Calendar, BookOpen, Video, BarChart3 } from "lucide-react";
+import Link from "next/link";
+import { Clock, Users, Star, Award, Calendar, BookOpen, Video, BarChart3, CheckCircle } from "lucide-react";
 import { StatCard } from "@/components/dashboard/stat-card";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -175,18 +176,18 @@ export default function TeacherDashboard() {
             <CardTitle>Quick Actions</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
-            <Button className="w-full justify-start gap-3 rounded-xl" variant="outline">
-              <Video className="h-4 w-4" /> Start Meeting
-            </Button>
-            <Button className="w-full justify-start gap-3 rounded-xl" variant="outline">
-              <Users className="h-4 w-4" /> View Students
-            </Button>
-            <Button className="w-full justify-start gap-3 rounded-xl" variant="outline">
-              <Calendar className="h-4 w-4" /> Open Calendar
-            </Button>
-            <Button className="w-full justify-start gap-3 rounded-xl" variant="outline">
-              <BookOpen className="h-4 w-4" /> Update Profile
-            </Button>
+            <Link href="/dashboard/teacher/homework" className="flex items-center gap-3 w-full px-4 py-2.5 rounded-xl border border-border hover:bg-muted transition-all text-sm font-medium">
+              <CheckCircle className="h-4 w-4 text-primary" /> Review Homework
+            </Link>
+            <Link href="/dashboard/teacher/live/1" className="flex items-center gap-3 w-full px-4 py-2.5 rounded-xl border border-border hover:bg-muted transition-all text-sm font-medium">
+              <Video className="h-4 w-4 text-primary" /> Start Meeting
+            </Link>
+            <Link href="/dashboard/teacher/students" className="flex items-center gap-3 w-full px-4 py-2.5 rounded-xl border border-border hover:bg-muted transition-all text-sm font-medium">
+              <Users className="h-4 w-4 text-primary" /> View Students
+            </Link>
+            <Link href="/dashboard/teacher/calendar" className="flex items-center gap-3 w-full px-4 py-2.5 rounded-xl border border-border hover:bg-muted transition-all text-sm font-medium">
+              <Calendar className="h-4 w-4 text-primary" /> Open Calendar
+            </Link>
           </CardContent>
         </Card>
       </div>

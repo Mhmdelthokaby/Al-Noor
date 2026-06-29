@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  BookOpen, LayoutDashboard, Users, GraduationCap, BookOpenCheck,
+  BookOpen, LayoutDashboard, Users, GraduationCap, BookOpenCheck, Award,
   Calendar, CreditCard, BarChart3, Bell, Settings, LogOut,
   ChevronLeft, Menu, X, ChevronDown, UserCircle, MessageSquare
 } from "lucide-react";
@@ -21,9 +21,9 @@ interface SidebarProps {
 
 const adminLinks = [
   { href: "/dashboard/admin", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/dashboard/admin/content-builder", label: "Content Builder", icon: BookOpenCheck },
   { href: "/dashboard/admin/teachers", label: "Teachers", icon: Users },
   { href: "/dashboard/admin/students", label: "Students", icon: GraduationCap },
-  { href: "/dashboard/admin/courses", label: "Courses", icon: BookOpenCheck },
   { href: "/dashboard/admin/subscriptions", label: "Subscriptions", icon: CreditCard },
   { href: "/dashboard/admin/payments", label: "Payments", icon: BarChart3 },
   { href: "/dashboard/admin/reports", label: "Reports", icon: BarChart3 },
@@ -33,12 +33,15 @@ const adminLinks = [
 const teacherLinks = [
   { href: "/dashboard/teacher", label: "Dashboard", icon: LayoutDashboard },
   { href: "/dashboard/teacher/students", label: "My Students", icon: GraduationCap },
+  { href: "/dashboard/teacher/homework", label: "Homework Review", icon: BookOpenCheck },
   { href: "/dashboard/teacher/calendar", label: "Calendar", icon: Calendar },
   { href: "/dashboard/teacher/profile", label: "Profile", icon: UserCircle },
 ];
 
 const studentLinks = [
   { href: "/dashboard/student", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/dashboard/student/courses", label: "My Programs", icon: BookOpenCheck },
+  { href: "/dashboard/student/certificates", label: "Certificates", icon: Award },
   { href: "/dashboard/student/teacher", label: "My Teacher", icon: Users },
   { href: "/dashboard/student/payments", label: "Payments", icon: CreditCard },
   { href: "/dashboard/student/profile", label: "Profile", icon: UserCircle },
